@@ -1,0 +1,27 @@
+<label nz-checkbox [(ngModel)]="isCurrentWeek">所有时间</label>
+<div *ngIf="todoItems?.length >0">
+<nz-table #basicTable
+  [nzData]="todoItems"
+  [nzTotal]="pageTotalCount"
+  [nzPageIndex]="pageIndex"
+  [nzPageSize]="pageSize"
+  [nzFrontPagination]="true"
+  >
+  <thead>
+    <tr>
+      <th>志愿活动类型</th>
+      <th>活动名称</th>
+      <th>具体时间</th>
+      <th>当前状态</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let todo of basicTable.data">
+        <td>{{todo.volunteerTypeStr}}<span *ngIf="todo.volunteerType === 3"><nz-tag [nzColor]="'#f50'">{{todo.orgName}}</nz-tag></span></td>
+          <td>{{todo.volunteerActivityStr}}</td>
+          <td>{{todo.todoTime}}<span *ngIf="todo.volunteerType !== 3"><nz-tag [nzColor]="'#2db7f5'">{{todo.weekName}}</nz-tag> </span><span *ngIf="todo.volunteerType !== 3"><nz-tag [nzColor]="'#87d068'">{{todo.timeName}}</nz-tag></span></td>
+          <td><nz-tag [nzColor]="todo.isValid ? '#2db7f5' : 'cyan'">{{todo.todoState}}</nz-tag> </td>
+    </tr>
+  </tbody>
+</nz-table>
+</div>

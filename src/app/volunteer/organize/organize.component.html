@@ -1,0 +1,39 @@
+<nz-collapse [nzBordered]='false' [nzAccordion]='true' class="org-collapse">
+  <nz-collapse-panel *ngFor='let org of organizInfo' [nzHeader]='org.organizerName' [nzActive]='true'>
+    <div style="background: #ECECEC;padding:40px;">
+      <div nz-row>
+        <div nz-col [nzSpan]="8" *ngFor="let activity of org.activityForOrganizationDtos">
+          <nz-card nzHoverable='true' [nzCover]='coverTemplate' class="org-card">
+            <nz-card-meta [nzTitle]='activity.activityName' [nzDescription]='des' [nzAvatar]='signActivity'>
+            </nz-card-meta>
+          </nz-card>
+          <ng-template #coverTemplate>
+            <img [src]="getImageSrc(activity.desImg?.localPath)">
+          </ng-template>
+          <ng-template #des>
+            <div class ="card-span">
+              <div>
+                <span>活动总人数：<nz-tag [nzColor]="'#2db7f5'">{{activity.signMaxNum}}</nz-tag> </span>
+                <span>已报名人数：<nz-tag [nzColor]="'#f50'">{{ getActivityCount(activity)}}</nz-tag></span>
+              </div>
+              <div>
+                <span>开始时间:<nz-tag [nzColor]="'#87d068'">{{parseToDate(activity.startTime) | date: 'yyyy-MM-dd'}}</nz-tag></span>
+                <span>结束时间:<nz-tag [nzColor]="'#87d068'">{{parseToDate(activity.endTime) | date: 'yyyy-MM-dd'}}</nz-tag></span>
+              </div>
+            </div>
+          </ng-template>
+          <ng-template #signActivity>
+            <button
+                class = "card-button"
+                nz-button
+                [nzType]="activity.activityState === 1 ? 'danger' : (activity.activityState === 2 ? 'primary' : 'default')"
+                (click)="signActivityHandel(activity)"
+                >{{activity.activityStateTypeStr}}{{ activity.activityState === 2 ? (checkHasSign(activity) ? '-取消报名' : '-报名') : ''}}</button>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+
+  </nz-collapse-panel>
+</nz-collapse>
+<app-notify-message #notifyMessage></app-notify-message>

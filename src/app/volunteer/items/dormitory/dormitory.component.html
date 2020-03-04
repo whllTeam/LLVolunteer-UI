@@ -1,0 +1,13 @@
+<nz-breadcrumb  class="office-bread">
+  <nz-breadcrumb-item>
+    寝室楼值班
+  </nz-breadcrumb-item>
+  <nz-breadcrumb-item>
+    {{chooseTab}}
+  </nz-breadcrumb-item>
+</nz-breadcrumb>
+<nz-tabset class="office-tabs">
+  <nz-tab [nzTitle]="dormitory.name"  *ngFor="let dormitory of dormitoryType" (nzSelect)="tabSelect(dormitory.name, dormitory.gender)">
+      <app-dormitory-tabs (loadData)="loadData()" [dormitoryTypeId] = "dormitory.id"  [userName]="userName" [dormitorySignInfo]="getSignInfo(dormitory.id)" [signData]="getSelfSignInfo(dormitory.id)"></app-dormitory-tabs>
+  </nz-tab>
+</nz-tabset>

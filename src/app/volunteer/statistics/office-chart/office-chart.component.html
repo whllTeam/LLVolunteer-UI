@@ -1,0 +1,12 @@
+<div style="background: #ECECEC;padding:30px;">
+  <nz-card style="height: 300px;" [nzBordered]="false" nzTitle="办公室">
+    <div style="font-size: 30px" *ngIf="volunteerCounts?.length > 0">
+        <span *ngFor="let count of volunteerCounts">
+            <p>{{count.volunteerName}}: <span class="chart-span">{{count.count}}</span>次</p>
+        </span>
+    </div>
+    <div *ngIf="volunteerCounts?.length <= 0">
+        <nz-empty></nz-empty>
+    </div>
+  </nz-card>
+</div>

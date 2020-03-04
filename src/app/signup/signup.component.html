@@ -1,0 +1,66 @@
+
+<div class="full-screen page-content">
+    <div class="wrapper">
+      <img class="logo-img"
+           src="/src/Img/233.jpg"
+           alt="">
+      <!-- <div class="text-wrapper">
+        <h1 class="title-text">
+          Today
+        </h1>
+      </div> -->
+      <form nz-form [formGroup]="validateForm" class="login-form" (ngSubmit)="submitForm()" novalidate>
+          <nz-form-item>
+            <nz-form-control  [nzValidateStatus]="validateStates('userName')" nzHasFeedback>
+              <nz-input-group [nzPrefix]="prefixUser">
+                <input type="text" nz-input formControlName="userName" placeholder="用户名">
+              </nz-input-group>
+              <nz-form-explain *ngIf="(isClickSubmit || validateForm.get('userName')?.dirty)&& validateForm.get('userName')?.errors">用户名已存在或为空</nz-form-explain>
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item>
+              <nz-form-control  [nzValidateStatus]="validateStates('email')" nzHasFeedback>
+                <nz-input-group [nzPrefix]="prefixMail">
+                  <input type="email" nz-input formControlName="email" placeholder="邮箱">
+                </nz-input-group>
+                <nz-form-explain *ngIf="(isClickSubmit || validateForm.get('email')?.dirty)&& validateForm.get('email')?.errors">邮箱不符合要求或为空</nz-form-explain>
+              </nz-form-control>
+            </nz-form-item>
+            <div formGroupName="passwordGroup">
+                <nz-form-item>
+                    <nz-form-control  [nzValidateStatus]="validateStates('password','passwordGroup')" nzHasFeedback>
+                        <!-- <nz-input-group [nzPrefix]="prefixLock" [nzSuffix]="suffixTemplate"> -->
+                      <nz-input-group [nzPrefix]="suffixTemplate">
+                        <input [type]="passwordVisible?'text':'password'" nz-input formControlName="password" placeholder="密码">
+                      </nz-input-group>
+                      <ng-template #suffixTemplate>
+                        <i *ngIf='passwordVisible' nz-icon nzType="eye-invisible" theme="outline" (click)="passwordVisible = !passwordVisible"></i>
+                        <i *ngIf='!passwordVisible' nz-icon nzType="eye" theme="outline" (click)="passwordVisible = !passwordVisible"></i>
+                      </ng-template>
+                      <nz-form-explain *ngIf="(isClickSubmit ||validateForm.get('passwordGroup')?.get('password')?.dirty) && validateForm.get('passwordGroup').get('password')?.errors">密码不符合要求(至少6为长度包含一个大、小写字母、特殊字符、数字)或为空</nz-form-explain>
+                    </nz-form-control>
+                  </nz-form-item>
+                  <nz-form-item>
+                      <nz-form-control  [nzValidateStatus]="validateStates('confirmPwd','passwordGroup')" nzHasFeedback>
+                        <nz-input-group [nzPrefix]="prefixLock">
+                          <input type="password" nz-input formControlName="confirmPwd" placeholder="确认密码">
+                        </nz-input-group>
+                        <nz-form-explain *ngIf="(isClickSubmit || validateForm.get('passwordGroup')?.get('confirmPwd')?.dirty) && validateForm.get('passwordGroup')?.get('confirmPwd')?.errors">两次密码不相等</nz-form-explain>
+                      </nz-form-control>
+                    </nz-form-item>
+            </div>
+          <nz-form-item>
+            <nz-form-control>
+              <span class="Register-declaration">注册即代表同意《志愿服务平台协议》</span>
+              <button nz-button class="login-form-button" [nzType]="'primary'">注册</button>
+            </nz-form-control>
+          </nz-form-item>
+        </form>
+        <ng-template #prefixUser><i nz-icon type="user"></i></ng-template>
+        <ng-template #prefixLock><i nz-icon type="lock"></i></ng-template>
+        <ng-template #prefixMail><i nz-icon type="mail"></i></ng-template>
+      <div class="copy-right">
+          志愿服务平台 ©2019
+      </div>
+    </div>
+  </div>

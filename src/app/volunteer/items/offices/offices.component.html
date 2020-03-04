@@ -1,0 +1,20 @@
+<nz-breadcrumb  class="office-bread">
+  <nz-breadcrumb-item>
+    办公室值班
+  </nz-breadcrumb-item>
+  <nz-breadcrumb-item>
+    {{chooseTab}}
+  </nz-breadcrumb-item>
+</nz-breadcrumb>
+<nz-tabset class="office-tabs">
+  <nz-tab [nzTitle]="office.name"  *ngFor="let office of officeType" (nzSelect)="tabSelect(office.name)">
+    <app-tables  *ngIf="office.isOpen"
+    [officeTypeId]="office.id"
+    [officeSignInfo]="getSignInfo(office.id)"
+    [userName]="userName"
+    [signData]="getSelfSignInfo(office.id)"
+    (loadData)="loadData()"
+    >
+    </app-tables>
+  </nz-tab>
+</nz-tabset>

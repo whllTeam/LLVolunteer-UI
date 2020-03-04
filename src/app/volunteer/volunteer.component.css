@@ -1,0 +1,8 @@
+
+.myMenu {
+  display: flex;
+  justify-content: center;
+}
+.bgWhite {
+  background: white;
+}

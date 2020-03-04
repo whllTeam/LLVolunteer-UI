@@ -1,0 +1,10 @@
+.volunteer-timeline span {
+  padding-right: 10px;
+  color: rgba(0,0,0,.45);
+  font-size: 14px;
+  line-height: 22px;
+}
+.volunteer-timeline span .volunteer-action {
+  color: red
+}
+

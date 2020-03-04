@@ -1,0 +1,33 @@
+<form nz-form [formGroup]="schoolInfoFormGroup" class="login-form" (ngSubmit)="submitForm()">
+  <nz-form-item>
+    <nz-form-label [nzSpan]="7">学号:</nz-form-label>
+    <nz-form-control [nzSpan]="12" nzHasFeedback>
+      <nz-input-group>
+        <input type="text" nz-input formControlName="userId" placeholder="学号" />
+      </nz-input-group>
+      <nz-form-explain *ngIf="schoolInfoFormGroup.get('userId')?.dirty && schoolInfoFormGroup.get('userId')?.errors">请输入标题
+      </nz-form-explain>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSpan]="7">密码：</nz-form-label>
+    <nz-form-control [nzSpan]="12" nzHasFeedback>
+      <nz-input-group>
+        <input type="password" nz-input formControlName="password" placeholder="密码" />
+      </nz-input-group>
+      <nz-form-explain *ngIf="schoolInfoFormGroup.get('password')?.dirty && schoolInfoFormGroup.get('password')?.errors">
+        请输入密码</nz-form-explain>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSpan]="7">验证码：</nz-form-label>
+    <nz-form-control [nzSpan]="12" nzHasFeedback>
+      <nz-input-group>
+        <img [src]="'data:image/jpeg;base64,'+imageSrc" *ngIf="imageSrc?.length>0" (click)="loadImage()">
+        <input type="text" nz-input formControlName="validateCode" placeholder="验证码"/>
+      </nz-input-group>
+      <nz-form-explain *ngIf="schoolInfoFormGroup.get('validateCode')?.dirty && schoolInfoFormGroup.get('validateCode')?.errors">
+        请输入验证码</nz-form-explain>
+    </nz-form-control>
+  </nz-form-item>
+</form>

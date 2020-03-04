@@ -1,0 +1,21 @@
+<div nz-row>
+  <div nz-col [nzSpan]="4" *ngFor="let week of officeWeek" class="card-container">
+    <nz-card [nzTitle]="week.name" class="card-week">
+      <div *ngFor="let officeTime of officeTime">
+          <nz-card [nzTitle]="officeTime.name" class="card-class">
+              <button
+              nz-button
+              nzBlock="true"
+              nz-popover
+              (click)="signHandle(week.id,officeTime.id)"
+              [nzType]="!this.checkSign(week.id,officeTime.id)?'primary':'danger'"
+              nzPlacement="bottomRight"
+              [nzContent]="'已有' + getSignData(week.id,officeTime.id) +'位志愿者报名'">
+              {{!this.checkSign(week.id,officeTime.id)?"报名":"取消报名"}}
+            </button>
+          </nz-card>
+      </div>
+    </nz-card>
+</div>
+
+<app-notify-message #notifyMessage></app-notify-message>

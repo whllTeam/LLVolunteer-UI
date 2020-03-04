@@ -1,0 +1,20 @@
+<ng-template #templateNotify>
+  <div class="ant-notification-notice-content">
+    <div class="ant-notification-notice-with-icon">
+        <i nz-icon type="smile" style="color: rgb(16, 142, 233);"></i>
+      <span class="ant-notification-notice-icon" *ngIf="getIco('success')">
+        <i nz-icon type="smile" style="color: rgb(16, 142, 233);"></i>
+      </span>
+      <span class="ant-notification-notice-icon" *ngIf="getIco('error')">
+        <i nz-icon type="frown" style="color: rgb(16, 142, 233);"></i>
+      </span>
+      <span class="ant-notification-notice-icon" *ngIf="getIco('info')">
+        <i nz-icon type="meh" style="color: rgb(16, 142, 233);"></i>
+      </span>
+      <div class="ant-notification-notice-message">{{title}}</div>
+      <div class="ant-notification-notice-description">
+        {{content}}
+      </div>
+    </div>
+  </div>
+</ng-template>

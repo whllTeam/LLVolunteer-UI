@@ -1,0 +1,55 @@
+<nz-layout>
+  <nz-header class="myMenu bgWhite">
+    <div class="log">
+    </div>
+    <ul nz-menu [nzMode]="'horizontal'" style="line-height: 64px;">
+      <li nz-menu-item nzSelected="{true}">
+        <a [routerLink]="['index']"> 首页</a> </li>
+      <li nz-menu-item>
+        <a [routerLink]="['organizations']"> 志愿组织</a></li>
+      <li nz-submenu>
+        <span title>志愿项目</span>
+        <ul>
+          <li nz-menu-group>
+            <span title>志愿值班</span>
+            <ul>
+              <li nz-menu-item>
+                <a [routerLink]="['items/offices']"> 办公室</a> </li>
+              <li nz-menu-item><a [routerLink]="['items/dormitory']">寝室楼</a></li>
+              <li nz-menu-item [nzDisabled]="true">地铁站</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li nz-menu-item><a [routerLink]="['culture']">志愿文化</a></li>
+      <!-- <li nz-menu-item>志愿服务交流会</li> -->
+      <li nz-submenu>
+        <span title>志愿社区</span>
+        <ul>
+          <li nz-menu-item>
+            <a href = "https://weibo.com/540000" target="_blank">微博</a></li>
+          <!-- <li nz-menu-item>空间</li> -->
+        </ul>
+      </li>
+      <li nz-submenu>
+        <span title>个人中心</span>
+        <ul>
+          <li *ngIf='menuTitle' (click)="handelUserInfo()" nz-menu-item>
+            {{menuTitle}}
+          </li>
+          <li nz-menu-item><a [routerLink]="['/signup']">注册</a></li>
+          <li nz-menu-item [nzDisabled] = '!isLogin'>
+            <a [routerLink]="['user']" routerLinkActive="router-link-active">个人信息</a>
+          </li>
+        </ul>
+      </li>
+    </ul>`
+
+  </nz-header>
+  <nz-content class="bgWhite">
+    <router-outlet></router-outlet>
+  </nz-content>
+  <nz-footer>
+    <p style="text-align: center; bottom: 0px;">志愿服务平台 ©2019</p>
+  </nz-footer>
+</nz-layout>

@@ -1,0 +1,35 @@
+<div *ngIf="pageInfos?.length > 0">
+    <nz-list class="volunteer-content"
+    [nzDataSource]="pageInfos"
+    [nzItemLayout]="'vertical'"
+    [nzRenderItem]="item"
+    [nzLoading]="load"
+    [nzPagination]="pagination">
+    <ng-template #item let-item>
+      <nz-list-item [nzContent]="item.content"  [nzExtra]="extra" [nzActions]="[createTime]">
+        <!-- <ng-template #starAction><i nz-icon type="star" theme="outline" style="margin-right: 8px;"></i> 156</ng-template>
+        <ng-template #likeAction><i nz-icon type="like" theme="outline" style="margin-right: 8px;"></i> 156</ng-template>
+        <ng-template #msgAction><span><i nz-icon type="message"  theme="outline" style="margin-right: 8px;"></i> 2</span></ng-template> -->
+        <ng-template #createTime>
+          <span class="create-time">{{item.createTime}}</span>
+        </ng-template>
+        <nz-list-item-meta
+          [nzAvatar]="item.avatar"
+          [nzTitle]="nzTitle"
+          [nzDescription]="item.description">
+          <ng-template #nzTitle><a href="{{item.href}}">{{item.title}}</a></ng-template>
+        </nz-list-item-meta>
+        <ng-template #extra>
+          <img *ngFor="let img of item.pageImgs" width="272" alt="logo" [src]="getImageSrc(img.localPath)">
+        </ng-template>
+      </nz-list-item>
+    </ng-template>
+    <ng-template #pagination>
+      <nz-pagination [nzPageIndex]="pageIndex" [nzTotal]="totalCount" (nzPageIndexChange)="loadData($event)" class="page"></nz-pagination>
+    </ng-template>
+  </nz-list>
+</div>
+<div *ngIf="pageInfos?.length <= 0">
+    <nz-empty></nz-empty>
+</div>
+

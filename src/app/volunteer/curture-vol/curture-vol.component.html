@@ -1,0 +1,21 @@
+  <div>
+    <div class="volunteer-step">
+      <nz-steps>
+        <nz-step nzTitle="登陆" nzStatus="finish" nzIcon="user"></nz-step>
+        <nz-step nzTitle="报名" nzStatus="finish" nzIcon="solution"></nz-step>
+        <nz-step nzTitle="审核" nzStatus="process" nzIcon="loading"></nz-step>
+        <nz-step nzTitle="公布结果" nzStatus="wait" nzIcon="smile"></nz-step>
+      </nz-steps>
+    </div>
+    <div class="volunteer-step">
+      <nz-list
+      [nzDataSource]="signActtivityNotes"
+      nzBordered
+      [nzRenderItem]="item">
+        <ng-template #item let-item>
+          <nz-list-item [nzContent]="getNotesStr(item)">
+          </nz-list-item>
+        </ng-template>
+      </nz-list>
+    </div>
+  </div>

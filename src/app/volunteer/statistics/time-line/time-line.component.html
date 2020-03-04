@@ -1,0 +1,10 @@
+<nz-timeline nzMode="alternate" class="volunteer-timeline">
+    <nz-timeline-item *ngFor="let activity of signActivityNotes" [nzColor]="activity.action==0 ? 'green' : 'red'">
+      <span clsss="volunteer-action">{{activity.action === 0 ? '报名参加' : '取消报名'}}</span>
+      <span class="volunteer-volunteerInfo">{{getSignNotes(activity)}}</span>
+      <span class="volunteer-weekInfo">{{activity.weekInfo}}</span>
+      <span class="volunteer-deatilTimes">{{activity.detailTimes}}</span>
+      <span class="volunteer-name">{{activity.volunteerName}}</span>
+      <span claas="volunteer-createTime">({{activity.createTime}})</span>
+    </nz-timeline-item>
+  </nz-timeline>
